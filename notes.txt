@@ -1,0 +1,6 @@
+this to do when i reach home 
+1:view explanation
+2:routes ...
+3:controllers
+5:models
+6:migrations
