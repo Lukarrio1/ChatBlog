@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Blog;
 class HomeController extends Controller
 {
     /**
@@ -15,6 +15,9 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
+    public function home(){
+        return view('welcome');
+    }
 
     /**
      * Show the application dashboard.
@@ -24,5 +27,17 @@ class HomeController extends Controller
     public function index()
     {
         return view('DashBoard');
+    }
+
+    public function store(Request $request){
+        $store = new Blog;
+        $this->validate($request,[
+            "Title"=>"required|min:3|max:100",
+            "Body"=>"required|min:10|max:250"
+        ]);
+        $store->Title = $request->Title;
+        $store->Body = $request->Body;
+        $store->save();
+        return 200;
     }
 }
